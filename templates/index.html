@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Driver Behavior Detection
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>
+            Driver Behavior Detection
+        </h1>
+
+        <p class="description">
+            Upload an image to identify the driver's behavior
+            using a VGG16 deep learning model.
+        </p>
+
+
+        <form
+            action="/predict"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <label for="image">
+                Select Driver Image
+            </label>
+
+            <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                required
+            >
+
+            <button type="submit">
+                Predict Behavior
+            </button>
+
+        </form>
+        {% if prediction %}
+
+    <div class="result">
+
+        <h2>
+            Prediction Result
+        </h2>
+
+        <p>
+            <strong>
+                Driver Behavior:
+            </strong>
+
+            {{ prediction }}
+        </p>
+
+        <p>
+            <strong>
+                Confidence:
+            </strong>
+
+            {{ "%.2f"|format(confidence) }}%
+        </p>
+
+        <img
+            src="{{ image_path }}"
+            alt="Uploaded Driver Image"
+            class="uploaded-image"
+        >
+
+    </div>
+
+{% endif %}
+{% if error %}
+
+    <div class="error">
+
+        {{ error }}
+
+    </div>
+
+{% endif %}
+
+    </div>
+
+</body>
+
+</html>

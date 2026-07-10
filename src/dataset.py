@@ -85,16 +85,6 @@ def create_dataframe():
 
     return df
 
-def main():
-
-    train_generator, validation_generator, test_generator = load_dataset()
-
-    print("\nDataset Pipeline Executed Successfully!")
-    print("-" * 40)
-
-    print("Training Samples   :", train_generator.samples)
-    print("Validation Samples :", validation_generator.samples)
-    print("Testing Samples    :", test_generator.samples)
 
     
 
@@ -212,5 +202,15 @@ def load_dataset():
     return train_generator, validation_generator, test_generator
 
 
+def main():
+
+    train_generator, validation_generator, test_generator = load_dataset()
+
+    print("\nDataset Pipeline Executed Successfully!")
+    print("-" * 40)
+
+    print("Training Samples   :", train_generator.samples)
+    print("Validation Samples :", validation_generator.samples)
+    print("Testing Samples    :", test_generator.samples)
 if __name__ == "__main__":
     main()
